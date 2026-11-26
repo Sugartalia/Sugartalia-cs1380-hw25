@@ -1,0 +1,110 @@
+Natalia Robertson - CS 1380 HW25
+
+Compile line:
+gcc -Wall -Wextra -Wpedantic -std=c23 -g -o basic_recursion basic_recursion.c
+
+Program output:
+factorial(0) = 1
+factorial(5) = 120
+fib(0) = 0
+fib(10) = 55
+max_in_array = 9
+is_palindrome(racecar) = 1
+is_palindrome(hello) = 0
+
+
+HAND TRACE: factorial(4)
+
+Calls going down:
+    factorial(4) -> factorial(3)
+      factorial(3) -> factorial(2)
+        factorial(2) -> factorial(1)
+          factorial(1) hits the base case and returns 1
+
+Values coming back up:
+factorial(1) returns 1
+    factorial(2) = 2 * 1 = 2
+      factorial(3) = 3 * 2 = 6
+        factorial(4) = 4 * 6 = 24
+
+
+ANSWERS
+
+1. The base case is n <= 1 and it returns 1.
+   The recursive part is n * factorial(n - 1). It keeps making n
+   smaller until it gets to the base case.
+
+2. If there wasnt a base case, the function would just keep calling
+   itself forever. The stack keeps growing until it runs out of space
+   and the program crashes (stack overflow).
+
+3. Naive fib calls fib(n - 1) and fib(n - 2), but then those calls
+   end up calculating the same numbers over and over again.
+   Like fib(2) gets calculated alot when finding fib(10), which makes
+   it get really slow.
+
+4. The array gets smaller each time. It uses a + 1 and n - 1, so it
+   checks one less element every call until n gets to 1.
+
+5. A loop is better for a really big array because recursion makes a
+   new stack frame for every element and could overflow the stack.
+   A loop is also just simpler and faster for scanning an array.
+
+6. Useless comment:
+   "/* add 1 to i */" above i = i + 1, because it literally just
+   says what the code already says.
+
+   Helpful comment:
+   "/* WHY: naive fib repeats the same work, so it gets very slow
+   past n = 40. */"
+
+   This one is helpful because it explains WHY the code is like that
+   instead of just repeating what the code does.
+
+7. Without the WHY comment, someone might think the fib function
+   is a bug or that it should be faster. They might also use it with
+   a huge n and wonder why it takes forever.
+
+8. [Fill in after your commits: I'd pick "Ignore build artifacts so
+   binaries never get pushed to the course repo" because it actually
+   explains why the change was made. "fix" doesnt really explain
+   anything.]
+
+9. A good bug report should include:
+   - steps to recreate the problem
+   - what you expected to happen
+   - what actually happened, including the exact error
+   - your environment (OS, compiler and version)
+
+10. You should say that you used an LLM, which tool you used, and
+    what you asked it. You also need to put the prompt, response,
+    and your critique in ai_usage_log.txt.
+
+    You shouldnt submit code you cant explain line by line, because
+    then you wouldnt be able to debug it or explain what it does.
+
+
+GIT STATUS AND LOG
+
+git status
+git log --oneline
+branch 'main' set up to track 'origin/main'.
+Everything up-to-date
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        recursion.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+34723a4 (HEAD -> main, origin/main) Add recursive factorial, fib, max_in_array, is_palindrome with demos
+5504e50 Ignore build artifacts so binaries never get pushed to the course repo
+
+
+REWRITING A WEAK COMMIT SUBJECT
+
+Weak: "fixed stuff"
+
+Better: "Stop factorial from recursing forever on n = 0 by returning
+1 when n <= 1"
